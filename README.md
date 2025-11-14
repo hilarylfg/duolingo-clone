@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Duolingo Clone
 
-## Getting Started
+Duolingo Clone — это современная обучающая платформа для изучения языков в стиле Duolingo. Проект реализован на Next.js 14, React 19, TypeScript, TailwindCSS и поддерживает сессионную авторизацию, двухфакторную аутентификацию, подтверждение email, а также полностью адаптивный дизайн.
 
-First, run the development server:
+## 🚀 Возможности
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Современный UI, вдохновлённый Duolingo
+- Сессионная авторизация (cookie-based, поддержка HttpOnly)
+- Двухфакторная аутентификация (2FA, код приходит на email)
+- Подтверждение email (обязательное, с автоматическим входом после подтверждения)
+- Профиль пользователя, смена пароля, включение/отключение 2FA
+- Курсы, уроки, упражнения (mock-данные)
+- Адаптивная верстка, анимации, плавные переходы
+- Полная поддержка русского языка
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Технологии
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js 16** (App Router, SSR/CSR)
+- **React 19**
+- **TypeScript**
+- **TailwindCSS**
+- **Zustand** (глбальное состояние)
+- **Lucide Icons**
+- **Custom API** (mock/реальный backend)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚡ Быстрый старт
 
-## Learn More
+### Backend:
 
-To learn more about Next.js, take a look at the following resources:
+1. **Создать контейнер Docker с БД и Redis:**
+   ```bash
+   cd backend
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Создать контейнер Docker с БД и Redis:**
+   ```bash
+   docker compose up -d
+   ```
+   
+3. **Создать `.env` и заполнить данные**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Установите зависимости:**
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+5. **Запустите dev-сервер:**
+   ```bash
+   npm start:dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Frontend:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Установите зависимости:**
+   ```bash
+   npm install
+   ```
+2. **Запустите dev-сервер:**
+   ```bash
+   npm next dev
+   ```
+3. **Откройте** [http://localhost:3000](http://localhost:3000)
+
+> Для работы с backend укажите переменную окружения `NEXT_PUBLIC_API_URL` в `.env`.
+
+## 🧑‍💻 Структура проекта
+
+- `app/` — страницы приложения (Next.js App Router)
+- `shared/components/` — UI-компоненты, упражнения, Header
+- `shared/services/` — сервисы для работы с API и mock-данными
+- `shared/store/` — глобальное состояние (auth, learning)
+- `shared/schemas/` — схемы валидации (zod)
+- `shared/types/` — типы TypeScript
+- `shared/utils/` — утилиты, fetch-клиент
+- `public/` — статика
+
+## 🔒 Безопасность
+
+- Все чувствительные cookie (`session_id`) имеют флаг HttpOnly и доступны только серверу
+- Проверка авторизации всегда происходит через запрос к API, а не через cookie на клиенте
+- 2FA и подтверждение email обязательны для безопасности
+
+## 📝 Как работает
+
+- После регистрации пользователь должен подтвердить email (ссылка приходит на почту)
+- После подтверждения email пользователь автоматически входит в систему
+- Если включена 2FA — при входе потребуется ввести код из письма
+- Все действия с профилем доступны в разделе "Настройки"
+
+
+## 🤝 Благодарности
+
+- [Duolingo](https://www.duolingo.com/) — за вдохновение
+- [Next.js](https://nextjs.org/), [React](https://react.dev/), [TailwindCSS](https://tailwindcss.com/)
+
+---
+
+> Проект создан для учебных целей. Не является коммерческим продуктом.
